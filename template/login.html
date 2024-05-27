@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Login</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='main.js'></script>
+</head>
+
+<body>
+    <form action="http://localhost:8080/authorize" method="get">
+        <input type="hidden" name="client_id" value="1">
+        <input type="hidden" name="redirect_uri" value="http://localhost/callback">
+        <input type="hidden" name="scope" value="read">
+        <input type="hidden" name="state" value="xyz">
+        <button type="submit">Use OAuth2.0 PoC Account</button>
+    </form>
+</body>
+
+</html>
