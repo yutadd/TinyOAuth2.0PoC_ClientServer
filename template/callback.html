@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    サインインしています。少しお待ちください。
+    <script>
+        window.onload = function () {
+            // URLからパラメータを取得
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            const state = urlParams.get('state');
+            if(state==="xyz"){
+                window.location="http://localhost:8080/access_token?grant_type=authorization_code&code="+code+"&success_redirect_uri=http://localhost/access_token_success&fail_redirect_uri=http://localhost/access_token_fail"
+            }
+        }
+    </script>
+</body>
+</html>

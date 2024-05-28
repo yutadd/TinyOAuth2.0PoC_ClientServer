@@ -17,12 +17,10 @@ def returnErrorUIToUA(context: BaseHTTPRequestHandler,error:str,error_detail:str
     context.send_header('Content-Type', 'text/html; charset=utf-8')
     context.end_headers()
     context.wfile.write(bytes(content, 'utf-8'))
-def returnReceiveParamClient(context: BaseHTTPRequestHandler):
-    with open('template/error.html', 'r', encoding='utf-8') as file:
+def returnCallbackAnalyzer(context: BaseHTTPRequestHandler):
+    with open('template/callback.html', 'r', encoding='utf-8') as file:
         content = file.read()
-    content = content.replace('{{error}}', error)
-    content = content.replace('{{error_detail}}', error_detail)
-    context.send_response(400)
+    context.send_response(200)
     context.send_header('Content-Type', 'text/html; charset=utf-8')
     context.end_headers()
     context.wfile.write(bytes(content, 'utf-8'))
