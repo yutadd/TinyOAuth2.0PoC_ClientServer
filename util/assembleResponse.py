@@ -24,3 +24,9 @@ def returnAuthorizationCallbackScript(context: BaseHTTPRequestHandler):#認可�
     context.send_header('Content-Type', 'text/html; charset=utf-8')
     context.end_headers()
     context.wfile.write(bytes(content, 'utf-8'))
+def redirectToLoginPage(context: BaseHTTPRequestHandler):
+    context.send_response(302)
+    context.send_header('Location', '/Login')
+    context.end_headers()
+
+
