@@ -8,7 +8,7 @@ class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path.startswith('/Login'):
             query_components = parse_qs(urlparse(self.path).query)
-            returnLoginUIToUA(self,query_components)
+            returnLoginUIToUA(self)
         elif self.path.startswith('/authorization_success'):
             returnAuthorizationCallbackScript(self)
         elif self.path.startswith('/authorization_fail'):

@@ -10,16 +10,5 @@
 
 <body>
     サインインしています。少しお待ちください。
-    <script>
-        window.onload = function () {
-            // URLからパラメータを取得
-            const urlParams = new URLSearchParams(window.location.search);
-            const code = urlParams.get('code');
-            const state = urlParams.get('state');
-            if(state==="xyz"){
-                window.location="http://localhost:8080/access_token?grant_type=authorization_code&code="+code+"&success_redirect_uri=http://localhost/access_token_success&fail_redirect_uri=http://localhost/access_token_fail"
-            }
-        }
-    </script>
 </body>
 </html>

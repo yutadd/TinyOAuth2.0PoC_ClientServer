@@ -17,7 +17,7 @@ def returnErrorUIToUA(context: BaseHTTPRequestHandler,error:str,error_detail:str
     context.send_header('Content-Type', 'text/html; charset=utf-8')
     context.end_headers()
     context.wfile.write(bytes(content, 'utf-8'))
-def returnAuthorizationCallbackScript(context: BaseHTTPRequestHandler):
+def returnAuthorizationCallbackScript(context: BaseHTTPRequestHandler):#認可サーバーから返されたコードはバックエンドで解析して、トークンに引き換える
     with open('template/authorization_callback.html', 'r', encoding='utf-8') as file:
         content = file.read()
     context.send_response(200)
