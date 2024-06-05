@@ -6,16 +6,18 @@ from util.assembleResponse import returnAuthorizationCallbackScript, returnError
 from http.server import BaseHTTPRequestHandler
 class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
-        if self.path.startswith('/'):
+        path=self.path.split('?')[0]
+        path=path.split('#')[0]
+        if path=='/':
             RedirectByState(self)
-        elif self.path.startswith('/Login'):
+        elif path=='/login':
             query_components = parse_qs(urlparse(self.path).query)
             returnLoginUIToUA(self)
-        elif self.path.startswith('/authorization_success'):
+        elif path=='/authorization_success':
             returnAuthorizationCallbackScript(self)
-        elif self.path.startswith('/authorization_fail'):
+        elif path=='/authorization_fail':
             query_components = parse_qs(urlparse(self.path).query)
-            returnErrorUIToUA(context=self,error=query_components.get("error",[None]),error_detail=query_components.get('error_detail',[None]))
+            returnErrorUIToUA(context=self,error=query_components.get("error",[None])[0],error_detail=query_components.get('error_detail',[None])[0])
         # TODO:token用のエンドポイントの追加
         else:
             returnErrorUIToUA(self,"invalid_page", "The authorization server does not support obtaining an authorization code using this method.")
