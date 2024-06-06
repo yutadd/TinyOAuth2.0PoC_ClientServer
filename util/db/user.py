@@ -1,6 +1,8 @@
 import sqlite3
 from datetime import datetime, timedelta
 import os
+
+from util.model.user import User
 def migrate_user_db():
     db_path = './db/users.db'
     os.makedirs(os.path.dirname(db_path), exist_ok=True)
@@ -32,4 +34,5 @@ def get_user_by_(session_id:str):
     conn = sqlite3.connect(db_path)
     cursor=conn.cursor()
     user=cursor.execute("select * from clients where session_id=?",(session_id))
-    #TODO: ユーザーモデルにして返却
+    return User(id=user[0],token=user[1],token_type=user[2],expires_at=user[3],refresh_token=user[4],scope=user[5],session_id=user[6])
+migrate_user_db()
