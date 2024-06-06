@@ -1,5 +1,6 @@
 
 from urllib.parse import parse_qs, urlparse
+from routes.AuthorizationCodeFlow.getAccessToken import exchangeCodeToAccessToken
 
 from routes.AuthorizationCodeFlow.home import RedirectByState
 from util.assembleResponse import returnWIPpage, returnErrorUIToUA, returnLoginUIToUA
@@ -14,7 +15,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             query_components = parse_qs(urlparse(self.path).query)
             returnLoginUIToUA(self)
         elif path=='/authorization_success':
-            returnWIPpage(self)
+            exchangeCodeToAccessToken(self)
         elif path=='/authorization_fail':
             query_components = parse_qs(urlparse(self.path).query)
             returnErrorUIToUA(context=self,error=query_components.get("error",[None])[0],error_detail=query_components.get('error_detail',[None])[0])

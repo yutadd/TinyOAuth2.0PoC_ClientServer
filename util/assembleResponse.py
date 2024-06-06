@@ -22,13 +22,7 @@ def returnErrorUIToUA(context: BaseHTTPRequestHandler,error:str,error_detail:str
     context.send_header('Content-Type', 'text/html; charset=utf-8')
     context.end_headers()
     context.wfile.write(bytes(content, 'utf-8'))
-def returnWIPpage(context: BaseHTTPRequestHandler):
-    with open('template/WIP.html', 'r', encoding='utf-8') as file:
-        content = file.read()
-    context.send_response(200)
-    context.send_header('Content-Type', 'text/html; charset=utf-8')
-    context.end_headers()
-    context.wfile.write(bytes(content, 'utf-8'))
+    
 def redirectToLoginPage(context: BaseHTTPRequestHandler):
     context.send_response(302)
     context.send_header('Location', '/login')
