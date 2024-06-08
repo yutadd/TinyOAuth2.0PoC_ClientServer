@@ -3,7 +3,7 @@ from urllib.parse import parse_qs, urlparse
 from routes.AuthorizationCodeFlow.getAccessToken import exchangeCodeToAccessToken
 
 from routes.AuthorizationCodeFlow.home import RedirectByState
-from util.assembleResponse import returnWIPpage, returnErrorUIToUA, returnLoginUIToUA
+from util.assembleResponse import returnErrorUIToUA, returnLoginUIToUA
 from http.server import BaseHTTPRequestHandler
 class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):

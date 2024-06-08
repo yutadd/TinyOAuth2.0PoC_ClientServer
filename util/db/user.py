@@ -28,11 +28,12 @@ def register_user(token:str,tokentype:str,expires_in:str,refresh_token:str,scope
     cursor=conn.cursor()
     cursor.execute('insert into clients (token, token_type, expires_at, refresh_token, scope, session_id) values (?, ?, ?, ?, ?, ?)', (token, tokentype, expires_at, refresh_token, scope, sessionID))
     conn.commit()
-def get_user_by_(session_id:str):
+def get_user_by_sessionid(session_id:str)->User:
     db_path = './db/users.db'
     os.makedirs(os.path.dirname(db_path), exist_ok=True)
     conn = sqlite3.connect(db_path)
     cursor=conn.cursor()
-    user=cursor.execute("select * from clients where session_id=?",(session_id))
+    cursor.execute("select * from clients where session_id=?",(session_id))
+    user = cursor.fetchone()
     return User(id=user[0],token=user[1],token_type=user[2],expires_at=user[3],refresh_token=user[4],scope=user[5],session_id=user[6])
 migrate_user_db()
