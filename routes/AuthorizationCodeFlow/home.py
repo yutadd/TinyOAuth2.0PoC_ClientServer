@@ -8,8 +8,8 @@ def RedirectByState(context:BaseHTTPRequestHandler):
     if "Cookie" in context.headers:
         cookie = SimpleCookie(context.headers["Cookie"])
         if "ClientServerSession_id" in cookie:
-            session_id=context.headers.get('Cookie', '').split('AuthorizationServerSession_id=')[-1].split(';')[0]
+            session_id=context.headers.get('Cookie', '').split('ClientServerSession_id=')[-1].split(';')[0]
             if get_user_by_sessionid(session_id):
-                returnLoggedinContent(context)
+                returnLoggedinContent(context,session_id=session_id)
                 return
     redirectToLoginPage(context)
