@@ -9,7 +9,7 @@ def RedirectByState(context:BaseHTTPRequestHandler):
         cookie = SimpleCookie(context.headers["Cookie"])
         if "ClientServerSession_id" in cookie:
             session_id=context.headers.get('Cookie', '').split('ClientServerSession_id=')[-1].split(';')[0]
-            if get_user_by_sessionid(session_id):
+            if get_user_by_sessionid(session_id) is not None:
                 returnLoggedinContent(context,session_id=session_id)
                 return
     redirectToLoginPage(context)
