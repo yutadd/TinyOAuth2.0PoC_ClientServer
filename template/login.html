@@ -10,8 +10,8 @@
 </head>
 
 <body>
-    <form action="http://localhost:8080/authorize/check_loggedin" method="get" enctype="application/x-www-form-urlencoded">
-        <input type="hidden" name="client_id" value="1">
+    <form action="http://localhost:8081/chk/loggedin" method="get" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" name="client_id" value="123abcABC">
         <input type="hidden" name="response_type" value="code">
         <input type="hidden" name="success_redirect_uri" value="http://localhost/authorization_success">
         <input type="hidden" name="fail_redirect_uri" value="http://localhost/authorization_fail">
